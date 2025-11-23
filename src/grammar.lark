@@ -1,0 +1,21 @@
+start: item*
+
+item: const_def
+    | value
+
+const_def: NAME "<-" value ";"
+
+value: NUMBER | string | array | const_use
+
+string: ESCAPED_STRING
+
+array: "'(" value* ")"
+
+const_use: "^{" NAME "}"
+
+NAME: /[_a-zA-Z][_a-zA-Z0-9]*/
+NUMBER: /[1-9][0-9]*/
+
+%import common.ESCAPED_STRING
+%import common.WS
+%ignore WS
